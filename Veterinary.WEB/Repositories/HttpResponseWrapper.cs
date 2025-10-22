@@ -28,18 +28,25 @@ namespace Veterinary.WEB.Repositories
             var codigoEstatus = HttpResponseMessage.StatusCode;
             if (codigoEstatus == HttpStatusCode.NotFound)
             {
+
+                //404
                 return "Recurso no encontrado";
             }
             else if (codigoEstatus == HttpStatusCode.BadRequest)
             {
+
+                //400
                 return await HttpResponseMessage.Content.ReadAsStringAsync();
             }
             else if (codigoEstatus == HttpStatusCode.Unauthorized)
             {
+                //401
                 return " Debes loguearte para realizar esta acción";
             }
             else if (codigoEstatus == HttpStatusCode.Forbidden)
             {
+                
+                //403
                 return " No tienes permisos para ejecutar esta acción";
             }
 
