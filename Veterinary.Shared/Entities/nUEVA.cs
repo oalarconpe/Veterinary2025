@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Veterinary.Shared.Entities
 {
-    internal class Class1
+    public class Class1
     {
+        public int Id { get; set; } 
+        public string Name { get; set; }
     }
 }
