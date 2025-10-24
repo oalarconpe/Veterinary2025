@@ -1,0 +1,40 @@
+﻿@page "/owners/create"
+
+@inject IRepository repository
+
+@inject NavigationManager navigationManager
+
+@inject SweetAlertService swal
+
+
+<h3>Owner  Create</h3>
+
+<OwnerForm @ref="OwnerForm" Owner="owner" OnSubmit="Create" ReturnAction="Return" />
+
+
+@code {
+    private OwnerForm OwnerForm;
+    private Owner owner = new();
+    private OwnerForm ownerForm;
+
+
+
+    private async Task Create()
+    {
+
+        var responseHttp = await repository.PostAsync("/api/owners", owner);
+        if (responseHttp.Error)
+        {
+            var message = await responseHttp.GetErrorMessageAsync();
+            await swal.FireAsync("Error", message);
+            return;
+        }
+        OwnerForm!.FormPostedSuccessfully = true;
+        navigationManager.NavigateTo("/Owners");
+    }
+
+    private void Return()
+    {
+        navigationManager.NavigateTo("/Owners");
+    }
+}
