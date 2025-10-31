@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Veterinary.API.Data;
 using Veterinary.Shared.Entities;
 
 namespace Veterinary.API.Controllers
 {
-
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("/api/owners")]
     public class OwnersController:ControllerBase
@@ -24,7 +26,7 @@ namespace Veterinary.API.Controllers
 
         // Get para obtoner una lista de resultados
         // Select * from table
-
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult> Get()
         {

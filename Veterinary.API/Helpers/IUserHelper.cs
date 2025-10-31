@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Veterinary.Shared.DTOs;
 using Veterinary.Shared.Entities;
 
 namespace Veterinary.API.Helpers
@@ -14,5 +15,12 @@ namespace Veterinary.API.Helpers
         Task AddUserToRoleAsync(User user, string roleName);
 
         Task<bool> IsUserInRoleAsync(User user, string roleName);
+
+        Task<SignInResult> LoginAsync(LoginDTO model);
+
+        Task LogoutAsync();
+
+
+
     }
 }
